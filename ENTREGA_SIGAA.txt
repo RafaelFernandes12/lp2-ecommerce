@@ -2,9 +2,9 @@ ATIVIDADE UNIDADE 03 - Programação Orientada a Objetos (LP2)
 Professor: Jefferson Gomes Dutra
 
 Integrantes do grupo (preencher):
-- Nome completo: ______________________  Matrícula: __________
-- Nome completo: ______________________  Matrícula: __________
-- Nome completo: ______________________  Matrícula: __________
+- Nome completo: Rafael Fernandes da Silva  Matrícula: 20240026340
+- Nome completo: Tobias Nogueira Lopes  Matrícula: 20240017805
+- Nome completo: Iago Diogo Procopio Santana  Matrícula: 20230044101
 - Nome completo: ______________________  Matrícula: __________
 
 Link do repositório (preencher):
