@@ -47,25 +47,6 @@ Ao iniciar, o sistema cria automaticamente o arquivo de banco `loja.db` na pasta
 atual (se ainda não existir) e carrega os dados já salvos. Use o menu de terminal
 para cadastrar clientes/produtos e operar os pedidos.
 
-## Fluxo de uso sugerido (para a apresentação)
-
-1. **Clientes → Cadastrar**: crie um *Cliente VIP* e um *Cliente Regular*.
-2. **Produtos → Cadastrar**: crie um *Produto Físico* (com estoque) e um *Produto Digital*.
-3. **Pedidos → Criar**: informe o id do cliente.
-4. **Pedidos → Adicionar item**: adicione produtos ao pedido.
-5. **Pedidos → Detalhar**: veja total bruto, frete, desconto do cliente e total a pagar.
-6. **Pedidos → Pagar**: escolha Pix (5% de desconto) ou Cartão (juros se parcelado).
-7. **Pedidos → Enviar → Entregar**: avance o estado do pedido.
-8. Feche e abra o sistema novamente: os dados continuam lá (persistência).
-
-Cenários para demonstrar as **exceções/regras**:
-- Cadastrar cliente com CPF com menos de 11 dígitos → `ValidacaoException`.
-- Pagar com "valor a pagar (base)" menor que o devido → `PagamentoInsuficienteException`.
-- Pagar item físico com quantidade acima do estoque → `EstoqueInsuficienteException`.
-- Tentar **Entregar** um pedido que ainda está `ACEITO` (sem pagar/enviar) →
-  `TransicaoInvalidaException`.
-- Tentar **Cancelar** um pedido já `ENVIADO` → `TransicaoInvalidaException`.
-
 ## Onde cada requisito está implementado
 
 | Requisito | Implementação |
@@ -101,7 +82,7 @@ lib/                           # dependências (sqlite-jdbc, slf4j)
 
 ## Modelo de domínio — destaques de OOP
 
-- **Herança com membros próprios** (exigência do enunciado): toda subclasse adiciona
+- **Herança com membros próprios**: toda subclasse adiciona
   atributos/comportamentos — `ClienteVip` tem `pontosFidelidade`, `ClienteRegular`
   tem `primeiraCompra`; `ProdutoFisico` tem `pesoKg`, `ProdutoDigital` tem `tamanhoMb`
   e `urlDownload`; `PagamentoCartao` tem `parcelas`, `PagamentoPix` tem `chavePix`.
