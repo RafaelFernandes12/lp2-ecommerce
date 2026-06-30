@@ -7,9 +7,6 @@ import br.com.loja.persistence.ProdutoDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Camada de serviço de produtos: cache em memória + sincronização com o banco.
- */
 public class ProdutoService {
 
     private final ProdutoDAO dao = new ProdutoDAO();
@@ -48,7 +45,6 @@ public class ProdutoService {
         return List.copyOf(produtos);
     }
 
-    /** Persiste o estado atual do produto (ex.: estoque após baixa/reposição). */
     public void persistir(Produto produto) {
         dao.atualizar(produto);
     }

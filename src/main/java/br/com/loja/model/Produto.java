@@ -3,10 +3,6 @@ package br.com.loja.model;
 import br.com.loja.exception.EstoqueInsuficienteException;
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Produto abstrato vendido pela loja. O cálculo de frete varia conforme o tipo
- * concreto (físico x digital) — ponto de polimorfismo. Também controla estoque.
- */
 public abstract class Produto {
 
     private int id;
@@ -21,13 +17,10 @@ public abstract class Produto {
         setEstoque(estoque);
     }
 
-    /** Regra de negócio polimórfica: frete depende do tipo concreto de produto. */
     public abstract double calcularFrete();
 
-    /** Identifica o tipo para persistência e exibição. */
     public abstract String tipo();
 
-    /** Baixa do estoque; lança exceção se não houver quantidade suficiente. */
     public void baixarEstoque(int quantidade) {
         if (quantidade <= 0) {
             throw new ValidacaoException("Quantidade para baixa deve ser positiva.");

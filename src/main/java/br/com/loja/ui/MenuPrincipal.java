@@ -16,10 +16,6 @@ import br.com.loja.service.ProdutoService;
 
 import java.util.Scanner;
 
-/**
- * Interface de terminal. Apresenta menus e delega às camadas de serviço.
- * Captura exceções de domínio para exibir mensagens amigáveis sem derrubar o app.
- */
 public class MenuPrincipal {
 
     private final Scanner sc = new Scanner(System.in);
@@ -53,8 +49,6 @@ public class MenuPrincipal {
         }
         System.out.println("Até logo!");
     }
-
-    // ===================== CLIENTES =====================
 
     private void menuClientes() {
         boolean voltar = false;
@@ -107,8 +101,6 @@ public class MenuPrincipal {
         });
     }
 
-    // ===================== PRODUTOS =====================
-
     private void menuProdutos() {
         boolean voltar = false;
         while (!voltar) {
@@ -159,8 +151,6 @@ public class MenuPrincipal {
             System.out.println("Atualizado: " + p);
         });
     }
-
-    // ===================== PEDIDOS =====================
 
     private void menuPedidos() {
         boolean voltar = false;
@@ -247,9 +237,6 @@ public class MenuPrincipal {
         });
     }
 
-    // ===================== LISTAGENS =====================
-
-    /** Lista os clientes existentes. Retorna false (e avisa) se não houver nenhum. */
     private boolean mostrarClientes() {
         var lista = clienteService.listar();
         if (lista.isEmpty()) {
@@ -261,7 +248,6 @@ public class MenuPrincipal {
         return true;
     }
 
-    /** Lista os produtos existentes. Retorna false (e avisa) se não houver nenhum. */
     private boolean mostrarProdutos() {
         var lista = produtoService.listar();
         if (lista.isEmpty()) {
@@ -273,7 +259,6 @@ public class MenuPrincipal {
         return true;
     }
 
-    /** Lista os pedidos existentes. Retorna false (e avisa) se não houver nenhum. */
     private boolean mostrarPedidos() {
         var lista = pedidoService.listar();
         if (lista.isEmpty()) {
@@ -285,9 +270,6 @@ public class MenuPrincipal {
         return true;
     }
 
-    // ===================== HELPERS =====================
-
-    /** Executa uma ação capturando exceções de domínio para não derrubar o menu. */
     private void executar(Runnable acao) {
         try {
             acao.run();

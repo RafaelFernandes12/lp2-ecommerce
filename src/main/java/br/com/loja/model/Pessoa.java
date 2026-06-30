@@ -2,11 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Classe base abstrata para qualquer pessoa do sistema.
- * Concentra os dados e validações comuns (nome, cpf, email) e
- * obriga as subclasses a se identificarem por um papel (descricaoPapel).
- */
 public abstract class Pessoa {
 
     private int id;
@@ -21,7 +16,6 @@ public abstract class Pessoa {
         setEmail(email);
     }
 
-    /** Comportamento abstrato: cada tipo de pessoa descreve seu papel no sistema. */
     public abstract String descricaoPapel();
 
     public int getId() {

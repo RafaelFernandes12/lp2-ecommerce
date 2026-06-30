@@ -1,9 +1,5 @@
 package br.com.loja.model;
 
-/**
- * Cliente VIP. Atributo próprio: pontosFidelidade.
- * Regra própria: 10% de desconto sempre, e acumula 1 ponto a cada R$ 10 gastos.
- */
 public class ClienteVip extends Cliente {
 
     private int pontosFidelidade;
@@ -19,7 +15,6 @@ public class ClienteVip extends Cliente {
         return valorCompra * 0.10;
     }
 
-    /** Acumula pontos de fidelidade conforme o valor efetivamente pago. */
     public void acumularPontos(double valorPago) {
         this.pontosFidelidade += (int) (valorPago / 10.0);
     }

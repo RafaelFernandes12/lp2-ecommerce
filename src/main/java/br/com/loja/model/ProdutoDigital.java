@@ -2,10 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Produto digital entregue por download. Atributos próprios: tamanhoMb e urlDownload.
- * Regra própria de frete: sempre gratuito (não há entrega física).
- */
 public class ProdutoDigital extends Produto {
 
     private double tamanhoMb;

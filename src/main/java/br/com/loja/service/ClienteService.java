@@ -7,29 +7,24 @@ import br.com.loja.persistence.ClienteDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Camada de serviço de clientes: mantém os clientes em memória (carregados na
- * inicialização) e sincroniza cada alteração com o banco via ClienteDAO.
- */
 public class ClienteService {
 
     private final ClienteDAO dao = new ClienteDAO();
     private final List<Cliente> clientes = new ArrayList<>();
 
-    /** Carrega os clientes persistidos para a memória (chamado no startup). */
     public void carregar() {
         clientes.clear();
         clientes.addAll(dao.listarTodos());
     }
 
     public Cliente cadastrar(Cliente cliente) {
-        dao.inserir(cliente); // validações ocorrem no construtor da entidade
+        dao.inserir(cliente);
         clientes.add(cliente);
         return cliente;
     }
 
     public void alterar(Cliente cliente) {
-        buscarPorId(cliente.getId()); // garante existência
+        buscarPorId(cliente.getId());
         dao.atualizar(cliente);
     }
 
@@ -50,7 +45,6 @@ public class ClienteService {
         return List.copyOf(clientes);
     }
 
-    /** Persiste alterações feitas no cliente por outras operações (ex.: pontos VIP). */
     public void persistir(Cliente cliente) {
         dao.atualizar(cliente);
     }

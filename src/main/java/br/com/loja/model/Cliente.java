@@ -2,10 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Cliente é uma Pessoa que compra na loja. É abstrato porque a política de
- * desconto depende do tipo de cliente (Regular ou VIP) — ponto de polimorfismo.
- */
 public abstract class Cliente extends Pessoa {
 
     private String endereco;
@@ -15,10 +11,6 @@ public abstract class Cliente extends Pessoa {
         setEndereco(endereco);
     }
 
-    /**
-     * Regra de negócio polimórfica: calcula o desconto (em R$) que este cliente
-     * tem direito sobre um determinado valor de compra.
-     */
     public abstract double calcularDesconto(double valorCompra);
 
     @Override

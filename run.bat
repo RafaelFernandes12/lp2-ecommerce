@@ -1,6 +1,4 @@
 @echo off
-REM Compila e executa o Sistema de Pedidos (LP2) no Windows.
-REM Requisito: Java 17+ instalado. As dependencias ja estao em lib\, sem Maven.
 setlocal
 cd /d "%~dp0"
 

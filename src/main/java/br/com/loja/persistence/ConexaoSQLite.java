@@ -5,11 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Gerencia a conexão única com o banco SQLite (arquivo loja.db) e cria as
- * tabelas na primeira execução. Como SQLite armazena tudo em um único arquivo,
- * atende ao requisito de persistência em arquivo e ao bônus de banco de dados.
- */
 public final class ConexaoSQLite {
 
     private static final String URL = "jdbc:sqlite:loja.db";
@@ -32,34 +27,33 @@ public final class ConexaoSQLite {
         }
     }
 
-    /** Cria o schema se ainda não existir (idempotente). Chamado na inicialização. */
     public static void inicializar() {
         String[] ddl = {
             "CREATE TABLE IF NOT EXISTS cliente (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "tipo TEXT NOT NULL," +            // REGULAR | VIP
+                "tipo TEXT NOT NULL," +
                 "nome TEXT NOT NULL," +
                 "cpf TEXT NOT NULL," +
                 "email TEXT NOT NULL," +
                 "endereco TEXT NOT NULL," +
-                "primeira_compra INTEGER," +        // ClienteRegular
-                "pontos INTEGER)",                  // ClienteVip
+                "primeira_compra INTEGER," +
+                "pontos INTEGER)",
 
             "CREATE TABLE IF NOT EXISTS produto (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "tipo TEXT NOT NULL," +             // FISICO | DIGITAL
+                "tipo TEXT NOT NULL," +
                 "nome TEXT NOT NULL," +
                 "preco_base REAL NOT NULL," +
                 "estoque INTEGER NOT NULL," +
-                "peso_kg REAL," +                   // ProdutoFisico
-                "tamanho_mb REAL," +                // ProdutoDigital
-                "url_download TEXT)",               // ProdutoDigital
+                "peso_kg REAL," +
+                "tamanho_mb REAL," +
+                "url_download TEXT)",
 
             "CREATE TABLE IF NOT EXISTS pedido (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "cliente_id INTEGER NOT NULL," +
                 "situacao TEXT NOT NULL," +
-                "pgto_forma TEXT," +                // PIX | CARTAO (null se não pago)
+                "pgto_forma TEXT," +
                 "pgto_valor_base REAL," +
                 "pgto_parcelas INTEGER," +
                 "pgto_chave TEXT," +

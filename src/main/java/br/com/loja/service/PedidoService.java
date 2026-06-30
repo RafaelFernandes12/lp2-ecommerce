@@ -14,12 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Serviço que orquestra o ciclo de vida do pedido. É aqui que ocorre a interação
- * entre múltiplas classes e regras de negócio: ao pagar, o pedido baixa estoque
- * (ProdutoService), atualiza fidelidade do cliente (ClienteService) e persiste a
- * mudança de estado. Depende dos demais serviços para manter tudo sincronizado.
- */
 public class PedidoService {
 
     private final PedidoDAO dao = new PedidoDAO();
@@ -32,7 +26,6 @@ public class PedidoService {
         this.produtoService = produtoService;
     }
 
-    /** Carrega os pedidos persistidos, religando clientes e produtos já em memória. */
     public void carregar() {
         pedidos.clear();
         var clientes = clienteService.listar().stream()
@@ -63,21 +56,14 @@ public class PedidoService {
         dao.atualizar(pedido);
     }
 
-    /**
-     * Confirma o pagamento. Esta operação cruza várias classes: Pedido valida a
-     * transição e o valor pago, baixa o estoque dos Produtos, acumula pontos do
-     * ClienteVip / consome desconto do ClienteRegular, e tudo é persistido.
-     */
     public void pagar(int pedidoId, Pagamento pagamento) {
         Pedido pedido = buscarPorId(pedidoId);
         double valorPago = pedido.totalAPagar();
 
-        pedido.pagar(pagamento); // pode lançar PagamentoInsuficiente/Transicao/Estoque
+        pedido.pagar(pagamento);
 
-        // estoque dos produtos mudou -> persistir cada um
         pedido.getItens().forEach(i -> produtoService.persistir(i.getProduto()));
 
-        // fidelidade do cliente (comportamento específico por tipo)
         Cliente cliente = pedido.getCliente();
         if (cliente instanceof ClienteVip vip) {
             vip.acumularPontos(valorPago);
@@ -104,7 +90,7 @@ public class PedidoService {
     public void cancelar(int pedidoId) {
         Pedido pedido = buscarPorId(pedidoId);
         pedido.cancelar();
-        // cancelamento pode ter devolvido estoque -> persistir produtos
+
         pedido.getItens().forEach(i -> produtoService.persistir(i.getProduto()));
         dao.atualizar(pedido);
     }

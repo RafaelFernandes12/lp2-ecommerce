@@ -17,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * DAO de Pedido. Persiste o pedido, seus itens (tabela item_pedido) e os dados
- * do pagamento desnormalizados na própria linha do pedido. Na leitura, reusa os
- * mapas de clientes e produtos já carregados em memória para religar as referências.
- */
 public class PedidoDAO {
 
     public Pedido inserir(Pedido p) {
@@ -43,7 +38,6 @@ public class PedidoDAO {
         }
     }
 
-    /** Atualiza situação + pagamento e regrava os itens. */
     public void atualizar(Pedido p) {
         String sql = "UPDATE pedido SET situacao=?,pgto_forma=?,pgto_valor_base=?,"
                 + "pgto_parcelas=?,pgto_chave=? WHERE id=?";
@@ -116,7 +110,7 @@ public class PedidoDAO {
                 int id = rs.getInt("id");
                 Cliente cliente = clientes.get(rs.getInt("cliente_id"));
                 if (cliente == null) {
-                    continue; // cliente removido; ignora pedido órfão
+                    continue;
                 }
                 Pedido pedido = new Pedido(id, cliente);
                 carregarItens(pedido, produtos);
@@ -138,7 +132,7 @@ public class PedidoDAO {
                 while (rs.next()) {
                     Produto produto = produtos.get(rs.getInt("produto_id"));
                     if (produto != null) {
-                        // adiciona direto enquanto o pedido ainda está em ACEITO (estado inicial)
+
                         pedido.adicionarItem(new ItemPedido(
                                 rs.getInt("id"), produto, rs.getInt("quantidade")));
                     }

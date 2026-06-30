@@ -2,11 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Pagamento via cartão de crédito. Atributo próprio: parcelas.
- * Regra própria: à vista (1x) sem juros; parcelado aplica 2% de juros por parcela
- * acima da primeira.
- */
 public class PagamentoCartao extends Pagamento {
 
     private static final double JUROS_POR_PARCELA = 0.02;
@@ -29,7 +24,6 @@ public class PagamentoCartao extends Pagamento {
         return "CARTAO";
     }
 
-    /** Valor de cada parcela na fatura do cartão. */
     public double valorParcela() {
         return calcularValorFinal() / parcelas;
     }

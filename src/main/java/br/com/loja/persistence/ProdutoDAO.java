@@ -11,10 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO de Produto. Coluna discriminadora 'tipo' reconstrói
- * ProdutoFisico/ProdutoDigital.
- */
 public class ProdutoDAO {
 
     public Produto inserir(Produto p) {

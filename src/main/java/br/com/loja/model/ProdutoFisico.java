@@ -2,10 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Produto físico entregue por transportadora. Atributo próprio: pesoKg.
- * Regra própria de frete: R$ 5,00 fixo + R$ 2,50 por kg.
- */
 public class ProdutoFisico extends Produto {
 
     private static final double FRETE_FIXO = 5.0;

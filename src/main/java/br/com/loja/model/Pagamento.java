@@ -2,10 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Pagamento abstrato de um pedido. O valor final efetivamente cobrado depende
- * da forma de pagamento (Pix dá desconto, Cartão pode ter juros) — polimorfismo.
- */
 public abstract class Pagamento {
 
     private int id;
@@ -16,13 +12,8 @@ public abstract class Pagamento {
         setValorBase(valorBase);
     }
 
-    /**
-     * Regra de negócio polimórfica: a partir do valor base do pedido,
-     * calcula quanto será efetivamente cobrado nesta forma de pagamento.
-     */
     public abstract double calcularValorFinal();
 
-    /** Identifica a forma de pagamento para persistência e exibição. */
     public abstract String forma();
 
     public int getId() {

@@ -1,9 +1,5 @@
 package br.com.loja.model;
 
-/**
- * Pagamento via Pix. Atributo próprio: chavePix.
- * Regra própria: 5% de desconto à vista por ser liquidação imediata.
- */
 public class PagamentoPix extends Pagamento {
 
     private static final double DESCONTO = 0.05;

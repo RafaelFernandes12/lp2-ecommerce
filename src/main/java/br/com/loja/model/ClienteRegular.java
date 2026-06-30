@@ -1,9 +1,5 @@
 package br.com.loja.model;
 
-/**
- * Cliente comum. Atributo próprio: primeiraCompra.
- * Regra própria: ganha 5% de desconto apenas na primeira compra; depois, 0%.
- */
 public class ClienteRegular extends Cliente {
 
     private boolean primeiraCompra;
@@ -19,7 +15,6 @@ public class ClienteRegular extends Cliente {
         return primeiraCompra ? valorCompra * 0.05 : 0.0;
     }
 
-    /** Marca que o cliente já realizou ao menos uma compra (consome o desconto de boas-vindas). */
     public void registrarCompraConcluida() {
         this.primeiraCompra = false;
     }

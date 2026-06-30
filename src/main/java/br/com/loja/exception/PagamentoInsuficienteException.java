@@ -1,9 +1,5 @@
 package br.com.loja.exception;
 
-/**
- * Lançada quando o valor pago não cobre o total devido do pedido
- * (itens + frete - desconto).
- */
 public class PagamentoInsuficienteException extends RuntimeException {
 
     public PagamentoInsuficienteException(double pago, double devido) {

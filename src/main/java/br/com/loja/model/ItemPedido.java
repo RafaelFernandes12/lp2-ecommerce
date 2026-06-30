@@ -2,10 +2,6 @@ package br.com.loja.model;
 
 import br.com.loja.exception.ValidacaoException;
 
-/**
- * Item de um pedido: associa um Produto a uma quantidade.
- * O subtotal combina preço do produto e o frete unitário (interação entre classes).
- */
 public class ItemPedido {
 
     private int id;
@@ -21,7 +17,6 @@ public class ItemPedido {
         setQuantidade(quantidade);
     }
 
-    /** Subtotal = (preço base + frete) * quantidade. */
     public double subtotal() {
         return (produto.getPrecoBase() + produto.calcularFrete()) * quantidade;
     }

@@ -12,11 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO de Cliente. Usa a coluna discriminadora 'tipo' para persistir e
- * reconstruir a subclasse correta (REGULAR ou VIP) — permitindo manter o
- * polimorfismo após carregar do banco.
- */
 public class ClienteDAO {
 
     public Cliente inserir(Cliente c) {
