@@ -8,7 +8,7 @@ Integrantes do grupo (preencher):
 - Nome completo: FABRICIA MARIA COSTA DE BRITO  Matrícula: 20220052763 
 
 Link do repositório (preencher):
-- https://github.com/__________/__________
+- https://github.com/RafaelFernandes12/lp2-ecommerce
 
 Observações:
 - As instruções para rodar a aplicação estão no README.md do repositório.
